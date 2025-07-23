@@ -1,6 +1,6 @@
 ---
 layout: atricle
-title: 人工智能期刊和会会议
+title: 人工智能期刊和会议
 tags: Tools
 
 ---
