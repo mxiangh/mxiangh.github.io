@@ -12,6 +12,8 @@ tags: Tools
 
 最近在学习AI方向的知识，需要对理论知识和代码进行整理，故想要制作一个个人Blog来记录自己的学习过程，Git和Github自然是一个很好的选择，笔者记录下自己的安装上传过程，希望对其他人也有所帮助。
 
+<!--more-->
+
 ### 二、Git的安装
 
 前往Git的官方链接[Git官网](https://git-scm.com/)，在首页点击Dowmload for Windows。
