@@ -50,6 +50,3 @@ header:
       tr      : &TR       Hakkında
       # @end locale config
     url: /about.html
-
-  - title: Github
-    url: https://github.com/mxiangh/mxiangh.github.io
