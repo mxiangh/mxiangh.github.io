@@ -1,5 +1,5 @@
 ---
-layout: atricle
+
 title: Git安装及Github使用
 tags: Tools
 ---
