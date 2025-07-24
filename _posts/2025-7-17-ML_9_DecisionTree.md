@@ -1,0 +1,73 @@
+---
+title: 机器学习（9）决策树——Decision Tree¶
+tags: ML Regression Classification
+---
+
+#### 决策树——Decision Tree
+
+决策树：https://www.cnblogs.com/wj-1314/p/9428494.html
+
+ID3算法：https://www.cnblogs.com/wj-1314/p/10268650.html
+
+CART算法：https://www.cnblogs.com/wj-1314/p/10361935.html
+
+定义：分类决策树模型是表示基于特征对实例进行分类的树形结构。决策树可以转换成一个if-then规则的集合，也可以看作是定义在特征空间划分上的类的条件概率分布。决策树学习算法包括3部分：特征选择、树的生成和树的剪枝。
+
+<!--more-->
+
+- 特征选择
+
+特征选择是指从训练数据中众多的特征中选择一个特征作为当前节点的分裂标准，如何选择特征有着很多不同量化评估标准，从而衍生出不同的决策树算法。
+
+（1）样本集合$D$对特征$A$的信息增益Info-Gain（ID3）
+
+
+$$g(D, A)=H(D)-H(D|A)$$
+
+$$H(D)=-\sum_{k=1}^{K} \frac{\left|C_{k}\right|}{|D|} \log _{2} \frac{\left|C_{k}\right|}{|D|}$$
+
+$$H(D | A)=\sum_{i=1}^{n} \frac{\left|D_{i}\right|}{|D|} H\left(D_{i}\right)$$
+
+其中，$H(D)$是数据集$D$的熵，$H(D_i)$是数据集$D_i$的熵，$H(D|A)$是数据集$D$对特征$A$的条件熵。	$D_i$是$D$中特征$A$取第$i$个值的样本子集，$C_k$是$D$中属于第$k$类的样本子集。$n$是特征$A$取 值的个数，$K$是类的个数。
+
+（2）样本集合$D$对特征$A$的信息增益比Gain-ration（C4.5）
+
+
+$$g_{R}(D, A)=\frac{g(D, A)}{H(D)}$$
+
+
+其中，$g(D,A)$是信息增益，$H(D)$是数据集$D$的熵。
+
+（3）CART（分类与回归树，classification and regression tree）
+
+对于回归树，采用的是平方误差最小化准则；对于分类树，采用基尼指数最小化准则
+
+a.CART回归
+
+假设已将输入空间划分为M个单元$R_1，R_2......R_m$，并且在每个单元$R_m$上有一个固定的输出值$C_m$，于是回归树可以表示为：
+$$f(x)=\sum_{m=1}^{M}c_mI(x \in R_m)$$
+当输入空间的划分确定时，可以用平方误差来$\sum_{x_i \in R_m}(y_i-f(x_i))^2$表示回归树对于训练数据的预测误差
+
+b.CART分类
+
+基尼指数：假设有K个类，样本点属于第K类的概率为$p_k$，则概率分布的基尼指数定义为
+
+$$\operatorname{Gini}(p)=\sum_{k=1}^{K}p_k(1-p_k)=1-\sum_{k=1}^{K}p_k^2$$
+
+对于给定的样本集合D，基尼指数为
+
+$$\operatorname{Gini}(D)=1-\sum_{k=1}^{K}\left(\frac{\left|C_{k}\right|}{|D|}\right)^{2}$$
+
+如果样本集合D根据特征A是否取某一可能值被分为$D_1$和$D_2$两部分，则特征$A$条件下集合$D$的基尼指数为
+
+ $$\operatorname{Gini}(D, A)=\frac{\left|D_{1}\right|}{|D|} \operatorname{Gini}\left(D_{1}\right)+\frac{\left|D_{2}\right|}{|D|} \operatorname{Gini}\left(D_{2}\right)$$
+
+- 树的生成
+
+根据选择的特征评估标准，从上至下递归地生成子节点，直到数据集不可分则停止决策树停止生长。树结构来说，递归结构是最容易理解的方式。
+
+- 树的剪枝
+  - 预剪枝：边建立决策树边进行剪枝的操作（更实用），预剪枝需要限制深度，叶子节点个数，叶子节点样本数，信息增益量等。
+  - 后剪枝：当建立完决策树后来进行剪枝操作，通过一定的衡量标准（叶子节点越多，损失越大）
+
+决策树容易过拟合，一般来需要剪枝，缩小树结构规则，缓解过拟合。
