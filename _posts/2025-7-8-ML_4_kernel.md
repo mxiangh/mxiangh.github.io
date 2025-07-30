@@ -12,7 +12,8 @@ tags: ML Regression
 - 常见核函数：
   - 高斯核：$ K_h(u)=e^{-\frac{u^{2}}{2 h^{2}}} （常用）$
   - Epanechnikov核：$ K_h(u)=max(0,1-\frac{u^{2}}{h^{2}})$
-  - 均匀核：$
+  - 均匀核：
+  - $
   K_h(u)=\left\{\begin{array}{l}
   1, \text { if } \vert u \vert \le h \\
   0, \text { otherwise }
@@ -81,3 +82,90 @@ x_{3}=20: \exp \left(-\left(2^{2}\right) / 50\right) \approx 0.92
 3.加权平均预测：
 
 $$\hat{y}(18）=\frac{0.04×50+0.67×70+0.92×100+0.67×120+0.04×150}{2.34} \approx 95.2$$
+
+~~~
+# 手写函数实现
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 1. 定义核函数：高斯核、Epanechnikov核、均匀核、三角核
+def gaussian_kernel(u, h): 
+    return np.exp(-(u ** 2) / (2 * h ** 2))
+def epanechnikov_kernel(u, h): 
+    return np.maximum(0, 1 - (u ** 2) / (h ** 2))
+def uniform_kernel(u, h): 
+    return np.where(np.abs(u) <= h, 1, 0)
+def triangular_kernel(u, h): 
+    return np.maximum(0, 1 - np.abs(u) / h)
+
+# 2. 核回归预测
+def kernel_regression(X_train, y_train, X_test, h=5.0, kernel='gaussian'):
+    kernels = {
+        'gaussian': gaussian_kernel,
+        'epanechnikov': epanechnikov_kernel,
+        'uniform': uniform_kernel,
+        'triangular': triangular_kernel
+    }
+    kernel_func = kernels.get(kernel, gaussian_kernel)
+    y_pred = np.zeros_like(X_test)
+    for i, x in enumerate(X_test):
+        weights = kernel_func(X_train - x, h)
+        y_pred[i] = np.sum(weights * y_train) / np.sum(weights) if np.sum(weights) != 0 else np.mean(y_train)
+    return y_pred
+
+# 3. 测试数据
+np.random.seed(42)
+X_train = np.linspace(0, 10, 100)
+y_train = np.sin(X_train) + np.random.normal(0, 0.1, 100)
+X_test = np.linspace(0, 10, 200)
+
+y_pred = kernel_regression(X_train, y_train, X_test, 5, 'gaussian')
+
+# 5. 可视化
+plt.scatter(X_train, y_train, s=10, alpha=0.6, label='Data')
+plt.plot(X_test, y_pred, 'r-', label=f'Kernel Regression (h=5)')
+plt.legend()
+plt.show()
+~~~
+
+~~~
+# 库函数实现
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.kernel_ridge import KernelRidge
+from sklearn.model_selection import GridSearchCV
+
+# 生成数据
+np.random.seed(42)
+X_train = np.linspace(0, 10, 100).reshape(-1, 1)
+y_train = np.sin(X_train).ravel() + np.random.normal(0, 0.1, 100)
+
+# 定义模型（使用RBF核，即高斯核）
+"""
+    rbf：即高斯核
+    linear：线性核
+    poly：多项式核
+    sigmoid：sigmoid核
+"""
+model = KernelRidge(kernel='rbf')
+
+# 网格搜索优化参数（alpha: 正则化强度, gamma: 核带宽的倒数）
+params = {'alpha': [0.1, 1, 10], 'gamma': [0.1, 1, 10]}
+grid = GridSearchCV(model, params, cv=5)
+grid.fit(X_train, y_train)
+
+# 最佳模型
+best_model = grid.best_estimator_
+print(f"Best params: {grid.best_params_}")
+
+# 预测
+X_test = np.linspace(0, 10, 200).reshape(-1, 1)
+y_pred = best_model.predict(X_test)
+
+# 可视化
+plt.scatter(X_train, y_train, s=10, alpha=0.6, label='Data')
+plt.plot(X_test, y_pred, 'r-', label='Kernel Ridge Regression')
+plt.legend()
+plt.show()
+~~~
+
