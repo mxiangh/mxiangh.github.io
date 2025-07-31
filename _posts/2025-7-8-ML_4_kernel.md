@@ -14,7 +14,7 @@ tags: ML Regression
   - Epanechnikov核：$ K_h(u)=max(0,1-\frac{u^{2}}{h^{2}})$
   - 均匀核：
   - $
-  K_h(u)=\left\{\begin{array}{l}
+  K_h(u)=\left\{\begin{array}{1}
   1, \text { if } \vert u \vert \le h \\
   0, \text { otherwise }
   \end{array}\right.
