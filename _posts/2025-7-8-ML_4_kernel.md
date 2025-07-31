@@ -11,12 +11,16 @@ tags: ML Regression
 
 - 常见核函数：
   - 高斯核：$ K_h(u)=e^{-\frac{u^{2}}{2 h^{2}}} （常用）$
+  
   - Epanechnikov核：$ K_h(u)=max(0,1-\frac{u^{2}}{h^{2}})$
+  
   - 均匀核：
-  $ K_h(u)=\left\{\begin{array}{1}
-  1, \text { if } \vert u \vert \le h \\
-  0, \text { otherwise }
-  \end{array}\right.$
+    
+    $$ K_h(u)=\left\{\begin{array}{l}
+    1, \text { if } \vert u \vert \le h \\
+    0, \text { otherwise }
+    \end{array}\right.$$
+  
   - 三角核：$ K_h(u)=max(0,1-\frac{\vert u \vert}{h})$
 
 预测值计算公式：
