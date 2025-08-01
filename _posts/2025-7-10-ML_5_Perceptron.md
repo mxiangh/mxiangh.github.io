@@ -4,8 +4,6 @@ tags: ML Classification
 typora-root-url: ./..\screenshots
 ---
 
-![](./Perceptron-Linear-Algorithm/one.png)
+![感知机](../assets/images/Perceptron-Linear-Algorithm/one.png)
 
-塞擦声擦拭
-
-时擦上次
+![](/assets/images/Perceptron-Linear-Algorithm/one.png)
