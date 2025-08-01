@@ -89,13 +89,13 @@ $$ L(w,b) = -\sum_{x_i \in M}y_i(w·x_i+b)$$
 $$f(x)=sign\left(w^{T} x+b\right)$$
 
 
-其中  $\boldsymbol{x}=\left(x_{1}, x_{2}\right)^{T}, \boldsymbol{w}=\left(w_{1}, w_{2}\right)^{T}, ~ \operatorname{sign}(x)=\left\{\begin{array}{ll}1, & x \geq 0 \\ -1, & x<0\end{array}\right. $ ．接下来我们证明感知机不能表示异或。
+其中  $x=\left(x_{1}, x_{2}\right)^{T}, w=\left(w_{1}, w_{2}\right)^{T}, ~ \operatorname{sign}(x)=\left\{\begin{array}{ll}1, & x \geq 0 \\ -1, & x<0\end{array}\right. $ ．接下来我们证明感知机不能表示异或。
 
 反证法．假设感知机可以模拟异或运算，则必须满足：
-- 当 $ \boldsymbol{x}=(0,0)^{T}  $时，有 $ f(\boldsymbol{x})=0 $ ，从而 $ b<0  $；
-- 当 $ \boldsymbol{x}=(1,0)^{T}  $时，有 $ f(\boldsymbol{x})=1 $ ，从而 $ w_{1}>-b>0 $ ；$
-- 当 $ \boldsymbol{x}=(0,1)^{T}  $时，有 $ f(\boldsymbol{x})=1 $ ，从而 $ w_{2}>-b>0 $ ；$
-- 但是，当  $\boldsymbol{x}=(1,1)^{T}  $时，有： $f(\boldsymbol{x})=\operatorname{sign}\left(w_{1}+w_{2}+b\right)=1  $，与  $x_{1} \oplus x_{2}=0  $矛盾。
+- 当 $x=(0,0)^{T}  $时，有 $ f(x)=0 $ ，从而 $ b<0  $；
+- 当 $ x=(1,0)^{T}  $时，有 $ f(x)=1 $ ，从而 $ w_{1}>-b>0 $ ；$
+- 当 $ x=(0,1)^{T}  $时，有 $ f(x)=1 $ ，从而 $ w_{2}>-b>0 $ ；$
+- 但是，当  $x=(1,1)^{T}  $时，有： $f(x)=\operatorname{sign}\left(w_{1}+w_{2}+b\right)=1  $，与  $x_{1} \oplus x_{2}=0  $矛盾。
 
 因此，原假设不成立，感知机无法模拟异或逻辑运算。
 
