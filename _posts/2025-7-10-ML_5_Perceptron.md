@@ -86,7 +86,7 @@ $$ L(w,b) = -\sum_{x_i \in M}y_i(w·x_i+b)$$
 
 为了严谨给出严格的数学证明。考虑如下的感知机模型：
 
-$$f(\boldsymbol{x})=\operatorname{sign}\left(\boldsymbol{w}^{T} \boldsymbol{x}+b\right)$$
+$$f(x)=sign\left(w^{T} x+b\right)$$
 
 
 其中  $\boldsymbol{x}=\left(x_{1}, x_{2}\right)^{T}, \boldsymbol{w}=\left(w_{1}, w_{2}\right)^{T}, ~ \operatorname{sign}(x)=\left\{\begin{array}{ll}1, & x \geq 0 \\ -1, & x<0\end{array}\right. $ ．接下来我们证明感知机不能表示异或。
