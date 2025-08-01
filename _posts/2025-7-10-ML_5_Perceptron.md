@@ -4,4 +4,4 @@ tags: ML Classification
 typora-root-url: ./..
 ---
 
-![](assets/images/Perceptron-Linear-Algorithm/one.png){:.center}
+![](/assets/images/Perceptron-Linear-Algorithm/one.png){:.center}
