@@ -89,7 +89,7 @@ $$ L(w,b) = -\sum_{x_i \in M}y_i(w·x_i+b)$$
 $$f(x)=sign\left(w^{T} x+b\right)$$
 
 
-其中  $x=\left(x_{1}, x_{2}\right)^{T}, w=\left(w_{1}, w_{2}\right)^{T}, ~ \operatorname{sign}(x)=\left\{\begin{array}{ll}1, & x \geq 0 \\ -1, & x<0\end{array}\right. $ ．接下来我们证明感知机不能表示异或。
+其中  $x=\left(x_{1}, x_{2}\right)^{T}, w=\left(w_{1}, w_{2}\right)^{T}, ~ \operatorname{sign}(x)$是符号函数 ．接下来我们证明感知机不能表示异或。
 
 反证法．假设感知机可以模拟异或运算，则必须满足：
 - 当 $x=(0,0)^{T}  $时，有 $ f(x)=0 $ ，从而 $ b<0  $；
