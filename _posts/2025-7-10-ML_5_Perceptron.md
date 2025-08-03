@@ -141,12 +141,14 @@ y = iris.target[:100]    # 只取前两类（0和1）
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # 训练感知机
-perceptron = Perceptron(learning_rate=0.1, max_epochs=50)
+perceptron = Perceptron(learning_rate=0.1, max_epochs=75)
 perceptron.fit(X_train, y_train)
 
 # 预测并评估
 y_pred = perceptron.predict(X_test)
 print(f"测试集准确率: {accuracy_score(y_test, y_pred):.2f}")
+y_train_pred = perceptron.predict(X_train)
+print("训练集准确率:", accuracy_score(y_train, y_train_pred))
 
 # 可视化决策边界
 def plot_decision_boundary(X, y, model):
@@ -162,7 +164,7 @@ def plot_decision_boundary(X, y, model):
     plt.xlabel('Sepal Length')
     plt.ylabel('Sepal Width')
     plt.title('Perceptron Decision Boundary')
-
+    
 plot_decision_boundary(X_train, y_train, perceptron)
 plt.show()
 ~~~
