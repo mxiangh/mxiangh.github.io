@@ -1,8 +1,8 @@
 header:
-  - titles: 归档
+  - title: 归档
     url: /archive.html
 
-  - titles: 打赏
+  - title: 打赏
     url: /about.html
 
   - title: Github
