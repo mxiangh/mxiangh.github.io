@@ -3,8 +3,6 @@ title: 机器学习（6）逻辑斯蒂回归——Logistic回归
 tags: ML Classification
 ---
 
-#### 逻辑斯蒂回归——Logistic回归
-
 思想：使用线性模型实现分类任务。
 
 <!--more-->
@@ -77,39 +75,7 @@ $$ ln \frac{y}{1-y} $$
 
 4.2 交叉熵损失函数
 
- [交叉熵](ML_other2_Entropy.html) 
-
-4.2.1 真实分布P的定义
-
-对于二分类问题，单个样本的真实标签$y \in \lbrace 0, 1 \rbrace $，其真实概率分布P是伯努利分布：
-
-- 当 $ y=1 $时，$P(Y=1)=1, P(Y=0)=0$
-
-- 当 $ y=0 $时，$P(Y=1)=0, P(Y=0)=1$
-
-4.2.2 模型预测分布Q的定义
-
-模型通过Logistic回归输出预测概率$\hat{y} = Q(Y=1 \vert x)=\frac{1}{1+e^{-(w^T x + b)}}$，则预测分布Q为：
-
-- $ Q(Y=1 \vert x) = \hat{y} $
-
-- $ Q(Y=0 \vert x) = 1 - \hat{y} $
-
-4.2.3 损失函数推导
-
-将P和Q代入交叉熵公式：
-
-$$ H(P, Q) = -\sum_{y \in \lbrace 0,1 \rbrace } P(y) logQ(y \vert x) $$
-
-- 当真实标签y=1时：$ H(P, Q) = -1·log Q(Y=1 \vert x) - 0·log Q(Y=0 \vert x) = - log \hat{y} $
-
-- 当真实标签y=0时：$ H(P, Q) = -0·log Q(Y=1 \vert x) - 1·log Q(Y=0 \vert x) = - log (1- \hat{y}) $
-
-合并上述两种情况，得到单个样本的交叉熵损失函数：
-
-$$ L(\hat{y},y)= - \lbrack y log \hat{y} + (1-y) log (1- \hat{y}) \rbrack $$
-
-对于整个数据集，总损失函数为单个样本损失的平均值，取均值是为了避免求解时梯度爆炸
+根据之前学的知识，这边直接给出二分类交叉熵的数学公式
 
 $$ J(w, b)= - \frac{1}{m} \sum_{i=1}^m \lbrack y log \hat{y} + (1-y) log (1- \hat{y}) \rbrack $$
 
@@ -167,14 +133,12 @@ $$\frac{\partial J}{\partial w_j} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_{i} -y_{i
 
 5.2 梯度下降求解步骤
 
-注：[随机梯度下降SGD](ML_other1_Gradient.html)
-
 - 初始化参数：随机或零初始化权重w和偏置b。
 - 计算梯度：求损失函数对w和b的偏导数（梯度）：
-    - 对偏置b的梯度：$\frac{\partial J}{\partial b} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_i -y_{i})$
-    - 对权重$w_j$的梯度：$\frac{\partial J}{\partial w_j} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_i -y_{i})x_{ij}$
+对偏置b的梯度：$\frac{\partial J}{\partial b} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_i -y_{i})$
+对权重$w_j$的梯度：$\frac{\partial J}{\partial w_j} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_i -y_{i})x_{ij}$
 - 更新参数：沿梯度负方向更新参数（学习率$\alpha$控制步长）：
-    - $ w_j = w_j - \alpha \frac{\partial J}{\partial w_j} $
+	- $ w_j = w_j - \alpha \frac{\partial J}{\partial w_j} $
     - $ b = b - \alpha \frac{\partial J}{\partial b} $
 - 迭代收敛：重复步骤 2-3，直到损失函数变化小于阈值或达到最大迭代次数。
 
