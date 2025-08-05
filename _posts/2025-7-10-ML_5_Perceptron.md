@@ -71,7 +71,7 @@ $$ L(w,b) = -\sum_{x_i \in M}y_i(w·x_i+b)$$
 
 由于感知机目标函数不可导，无法直接求解析解，所以只能通过迭代优化求取参数。通常使用随机梯度下降法（SGD）优化算法。
 
-注：[随机梯度下降SGD](2025-7-10-ML_other1_Gradient.md)
+注：[随机梯度下降SGD](https://mxiangh.github.io/2025-7-10-ML_other1_Gradient.md)
 
 ##### 4.缺点
 
