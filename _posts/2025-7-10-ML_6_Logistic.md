@@ -77,7 +77,7 @@ $$ ln \frac{y}{1-y} $$
 
 4.2 交叉熵损失函数
 
- [交叉熵](2025-7-10-ML_other2_Entropy.md) 
+ [交叉熵](https://mxiangh.github.io/2025/7/10/ML_other2_Entropy.md) 
 
 4.2.1 真实分布P的定义
 
