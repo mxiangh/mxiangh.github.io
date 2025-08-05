@@ -171,8 +171,8 @@ $$\frac{\partial J}{\partial w_j} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_{i} -y_{i
 
 - 初始化参数：随机或零初始化权重w和偏置b。
 - 计算梯度：求损失函数对w和b的偏导数（梯度）：
-    - 对偏置b的梯度：$\frac{\partial J}{\partial b} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_{i} -y_{i})$
-    - 对权重$w_j$的梯度：$\frac{\partial J}{\partial w_j} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_{i} -y_{i})x_{ij}$
+    - 对偏置b的梯度：$\frac{\partial J}{\partial b} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_i -y_{i})$
+    - 对权重$w_j$的梯度：$\frac{\partial J}{\partial w_j} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_i -y_{i})x_{ij}$
 - 更新参数：沿梯度负方向更新参数（学习率$\alpha$控制步长）：
     - $ w_j = w_j - \alpha \frac{\partial J}{\partial w_j} $
     - $ b = b - \alpha \frac{\partial J}{\partial b} $
