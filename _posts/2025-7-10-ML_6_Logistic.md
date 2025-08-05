@@ -77,7 +77,7 @@ $$ ln \frac{y}{1-y} $$
 
 4.2 交叉熵损失函数
 
- [交叉熵](1) 
+ [交叉熵](ML_other2_Entropy.html) 
 
 4.2.1 真实分布P的定义
 
@@ -167,7 +167,7 @@ $$\frac{\partial J}{\partial w_j} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_{i} -y_{i
 
 5.2 梯度下降求解步骤
 
-注：[随机梯度下降SGD](https://mxiangh.github.io/2025/07/10/ML_other1_Gradient.html)
+注：[随机梯度下降SGD](ML_other1_Gradient.html)
 
 - 初始化参数：随机或零初始化权重w和偏置b。
 - 计算梯度：求损失函数对w和b的偏导数（梯度）：
