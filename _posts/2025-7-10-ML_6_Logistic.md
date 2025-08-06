@@ -143,11 +143,11 @@ $$\frac{\partial J}{\partial w_j} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_{i} -y_{i
 
 对偏置b的梯度：
 
-$\frac{\partial J}{\partial b} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_i -y_{i})$
+$$ \frac{\partial J}{\partial b} = \frac{1}{m} \sum_{i=1}^{m} (\hat{y}_{i} -y_{i}) $$
 
 对权重$w_j$的梯度：
 
-$\frac{\partial J}{\partial w_j} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_i -y_{i})x_{ij}$
+$$\frac{\partial J}{\partial w_j} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_{i} -y_{i})x_{ij}$$
 
 - 更新参数：沿梯度负方向更新参数（学习率$\alpha$控制步长）：
 	- $ w_j = w_j - \alpha \frac{\partial J}{\partial w_j} $
