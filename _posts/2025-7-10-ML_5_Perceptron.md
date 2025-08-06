@@ -71,8 +71,6 @@ $$ L(w,b) = -\sum_{x_i \in M}y_i(w·x_i+b)$$
 
 由于感知机目标函数不可导，无法直接求解析解，所以只能通过迭代优化求取参数。通常使用随机梯度下降法（SGD）优化算法。 
 
-
-
 ##### 5.缺点
 
 感知机是一个线性模型，最大的缺点是不能表示异或函数，这为后续神经网络中激活函数的出现做铺垫。
@@ -104,6 +102,10 @@ $$f(x)=sign\left(w^{T} x+b\right)$$
 - 但是，当  $x=(1,1)^{T}  $时，有： $f(x)=\operatorname{sign}\left(w_{1}+w_{2}+b\right)=1  $，与  $x_{1} \oplus x_{2}=0  $矛盾。
 
 因此，原假设不成立，感知机无法模拟异或逻辑运算。
+
+代码注解：第一段手写没有标准化（通常均值为 0，标准差为 1 ），训练时出现误差，第二段代码使用标准化，训练和测试都是百分百，第三段使用sklearn实现。
+
+说明数据标准化能够影响模型训练的准确率！！！
 
 ~~~
 # 手写实现
@@ -139,7 +141,7 @@ class Perceptron:
         linear_output = np.dot(X, self.weights) + self.bias
         return np.where(linear_output >= 0, 1, 0)
 
-# 加载鸢尾花数据集（二分类：Setosa vs Versicolor）
+# 加载鸢尾花数据集
 iris = load_iris()
 X = iris.data[:100, :2]  # 只取前两列特征（方便可视化）
 y = iris.target[:100]    # 只取前两类（0和1）
@@ -174,5 +176,147 @@ def plot_decision_boundary(X, y, model):
     
 plot_decision_boundary(X_train, y_train, perceptron)
 plt.show()
+~~~
+
+
+
+~~~
+# 手写实现
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import StandardScaler
+
+class Perceptron:
+    def __init__(self, learning_rate=0.01, max_epochs=100):
+        self.lr = learning_rate      # 学习率
+        self.max_epochs = max_epochs # 最大迭代次数
+        self.weights = None          # 权重
+        self.bias = None             # 偏置项
+
+    def fit(self, X, y):
+        n_samples, n_features = X.shape
+        self.weights = np.zeros(n_features)
+        self.bias = 0
+
+        # 将标签转换为 ±1（感知机要求）
+        y_ = np.where(y == 0, -1, 1)
+
+        for _ in range(self.max_epochs):
+            for idx, x_i in enumerate(X):
+                condition = y_[idx] * (np.dot(x_i, self.weights) + self.bias) <= 0
+                if condition:
+                    self.weights += self.lr * y_[idx] * x_i
+                    self.bias += self.lr * y_[idx]
+
+    def predict(self, X):
+        linear_output = np.dot(X, self.weights) + self.bias
+        return np.where(linear_output >= 0, 1, 0)
+
+# 加载鸢尾花数据集
+iris = load_iris()
+X = iris.data[:100, :2]  # 只取前两列特征（方便可视化）
+y = iris.target[:100]    # 只取前两类（0和1）
+
+# 划分训练集和测试集
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 特征标准化
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# 训练感知机
+perceptron = Perceptron(learning_rate=0.1, max_epochs=75)
+perceptron.fit(X_train_scaled, y_train)
+
+# 预测并评估
+y_pred = perceptron.predict(X_test_scaled)
+print(f"测试集准确率: {accuracy_score(y_test, y_pred):.2f}")
+y_train_pred = perceptron.predict(X_train_scaled)
+print("训练集准确率:", accuracy_score(y_train, y_train_pred))
+
+# 可视化决策边界
+def plot_decision_boundary(X, y, model):
+    x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+    y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+                         np.arange(y_min, y_max, 0.02))
+    Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+    
+    plt.contourf(xx, yy, Z, alpha=0.3)
+    plt.scatter(X[:, 0], X[:, 1], c=y, edgecolors='k')
+    plt.xlabel('Sepal Length')
+    plt.ylabel('Sepal Width')
+    plt.title('Perceptron Decision Boundary')
+    
+plot_decision_boundary(X_train_scaled, y_train, perceptron)
+plt.show()
+~~~
+
+
+
+~~~
+# sklearn实现
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.linear_model import Perceptron
+from sklearn.preprocessing import StandardScaler
+
+# 加载鸢尾花数据集
+iris = load_iris()
+X = iris.data[:100, :2]
+y = iris.target[:100]
+
+# 划分训练集和测试集
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 特征标准化
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# 初始化并训练感知机模型(梯度下降)
+perceptron = Perceptron(eta0=0.1, max_iter=75, random_state=42)
+perceptron.fit(X_train_scaled, y_train)
+
+# 预测并评估
+y_pred = perceptron.predict(X_test_scaled)
+print(f"测试集准确率: {accuracy_score(y_test, y_pred):.2f}")
+
+y_train_pred = perceptron.predict(X_train_scaled)
+print(f"训练集准确率: {accuracy_score(y_train, y_train_pred):.2f}")
+
+# 可视化决策边界
+def plot_decision_boundary(X, y, model, scaler):
+    # 创建网格
+    x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+    y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+                         np.arange(y_min, y_max, 0.02))
+    
+    # 对网格点进行标准化并预测
+    grid_points = np.c_[xx.ravel(), yy.ravel()]
+    grid_points_scaled = scaler.transform(grid_points)
+    Z = model.predict(grid_points_scaled)
+    Z = Z.reshape(xx.shape)
+    
+    # 绘制决策边界和数据点
+    plt.contourf(xx, yy, Z, alpha=0.3)
+    plt.scatter(X[:, 0], X[:, 1], c=y, edgecolors='k')
+    plt.xlabel(iris.feature_names[0])
+    plt.ylabel(iris.feature_names[1])
+    plt.title('Perceptron Decision Boundary (scikit-learn)')
+
+# 使用原始数据（未标准化）绘图，以便特征轴显示原始尺度
+plot_decision_boundary(X_train, y_train, perceptron, scaler)
+plt.show()
+
 ~~~
 

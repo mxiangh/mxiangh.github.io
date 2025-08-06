@@ -1,6 +1,7 @@
 ---
 title: 机器学习补充（2）KL散度与交叉熵
 tags: ML Tips
+typora-root-url: ./..
 ---
 
 介绍一下，熵、KL散度、交叉熵。
@@ -48,6 +49,14 @@ $$H(P, Q)=-\sum_{y} P(y) \log Q(y)$$
 
 #### 4.二分类交叉熵
 
+二分类需要了解Sigmoid函数
+
+![](/assets/images/Algorithm/sigmoid.png)
+
+$$ y = \frac{1}{1+e^{-x}} $$
+
+这个函数将x控制在$\lbrack 0, 1 \rbrack$之间，转为一个接近0或1的y值。
+
 4.1 真实分布P的定义
 
 对于二分类问题，单个样本的真实标签$y \in \lbrace 0, 1 \rbrace $，其真实概率分布P是伯努利分布：
@@ -58,7 +67,7 @@ $$H(P, Q)=-\sum_{y} P(y) \log Q(y)$$
 
 4.2 模型预测分布Q的定义
 
-模型通过Logistic回归输出预测概率$\hat{y} = Q(Y=1 \vert x)=\frac{1}{1+e^{-(w^T x + b)}}$，则预测分布Q为：
+模型Sigmoid函数输出预测概率$\hat{y} = Q(Y=1 \vert x)=\frac{1}{1+e^{-x}}$，则预测分布Q为：
 
 - $ Q(Y=1 \vert x) = \hat{y} $
 

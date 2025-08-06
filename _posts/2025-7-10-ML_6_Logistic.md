@@ -1,6 +1,7 @@
 ---
 title: 机器学习（6）逻辑斯蒂回归——Logistic回归
 tags: ML Classification
+typora-root-url: ./..
 ---
 
 思想：使用线性模型实现分类任务。
@@ -38,6 +39,8 @@ $$ y=\left\{\begin{array}{1}
 如果预测值z大于0就判为正例，小于0就判为负例，为临界值则任意判别。
 
 但是，单位阶跃函数不连续，于是提出一个常用的替代函数，“Sigmoid函数”
+
+![](/assets/images/Algorithm/sigmoid.png)
 
 $$ y = \frac{1}{1+e^{-z}} $$
 
@@ -134,13 +137,18 @@ $$\frac{\partial J}{\partial w_j} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_{i} -y_{i
 5.2 梯度下降求解步骤
 
 - 初始化参数：随机或零初始化权重w和偏置b。
+
 - 计算梯度：求损失函数对w和b的偏导数（梯度）：
-对偏置b的梯度：$\frac{\partial J}{\partial b} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_i -y_{i})$
-对权重$w_j$的梯度：$\frac{\partial J}{\partial w_j} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_i -y_{i})x_{ij}$
+  对偏置b的梯度：$\frac{\partial J}{\partial b} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_i -y_{i})$
+  对权重$w_j$的梯度：$\frac{\partial J}{\partial w_j} =\frac{1}{m} \sum_{i=1}^{m} (\hat{y}_i -y_{i})x_{ij}$
+
 - 更新参数：沿梯度负方向更新参数（学习率$\alpha$控制步长）：
 	- $ w_j = w_j - \alpha \frac{\partial J}{\partial w_j} $
-    - $ b = b - \alpha \frac{\partial J}{\partial b} $
+  - $ b = b - \alpha \frac{\partial J}{\partial b} $
+  
 - 迭代收敛：重复步骤 2-3，直到损失函数变化小于阈值或达到最大迭代次数。
+
+代码注解：与感知机一样，标准化后的数据,准确率升高。
 
 ~~~
 # 手写实现
@@ -226,5 +234,146 @@ plt.show()
 
 
 ~~~
+# 手写实现
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import StandardScaler
+
+class LogisticRegression:
+    def __init__(self, learning_rate=0.01, max_epochs=1000):
+        self.lr = learning_rate      # 学习率
+        self.max_epochs = max_epochs # 最大迭代次数
+        self.weights = None          # 权重
+        self.bias = None             # 偏置项
+
+    # Sigmoid激活函数，将线性输出映射到[0,1]
+    def sigmoid(self, z):
+        return 1 / (1 + np.exp(-z))
+
+    def fit(self, X, y):
+        n_samples, n_features = X.shape
+        self.weights = np.zeros(n_features)
+        self.bias = 0
+
+        # 梯度下降优化
+        for _ in range(self.max_epochs):
+            # 计算线性输出和预测概率
+            linear_output = np.dot(X, self.weights) + self.bias
+            y_pred_proba = self.sigmoid(linear_output)
+
+            # 计算梯度
+            dw = (1 / n_samples) * np.dot(X.T, (y_pred_proba - y))
+            db = (1 / n_samples) * np.sum(y_pred_proba - y)
+
+            # 更新参数
+            self.weights -= self.lr * dw
+            self.bias -= self.lr * db
+
+    def predict(self, X):
+        linear_output = np.dot(X, self.weights) + self.bias
+        y_pred_proba = self.sigmoid(linear_output)
+        # 概率大于0.5则预测为1，否则为0
+        return np.where(y_pred_proba >= 0.5, 1, 0)
+
+# 加载鸢尾花数据集
+iris = load_iris()
+X = iris.data[:100, :2]  # 只取前两列特征（方便可视化）
+y = iris.target[:100]    # 只取前两类（0和1）
+
+# 划分训练集和测试集
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 特征标准化
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# 训练Logistic回归模型
+log_reg = LogisticRegression(learning_rate=0.1, max_epochs=1000)
+log_reg.fit(X_train_scaled, y_train)
+
+# 预测并评估
+y_pred = log_reg.predict(X_test_scaled)
+print(f"测试集准确率: {accuracy_score(y_test, y_pred):.2f}")
+y_train_pred = log_reg.predict(X_train_scaled)
+print(f"训练集准确率: {accuracy_score(y_train, y_train_pred):.2f}")
+
+# 可视化决策边界
+def plot_decision_boundary(X, y, model):
+    x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+    y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+                         np.arange(y_min, y_max, 0.02))
+    Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+    
+    plt.contourf(xx, yy, Z, alpha=0.3)
+    plt.scatter(X[:, 0], X[:, 1], c=y, edgecolors='k')
+    plt.xlabel('Sepal Length')
+    plt.ylabel('Sepal Width')
+    plt.title('Logistic Regression Decision Boundary')
+    
+plot_decision_boundary(X_train_scaled, y_train, log_reg)
+plt.show()
+~~~
+
+
+
+~~~
+# sklearn实现
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression  # 导入scikit-learn的逻辑斯蒂回归类
+
+# 加载鸢尾花数据集
+iris = load_iris()
+X = iris.data[:100, :2]  # 只取前两列特征（方便可视化）
+y = iris.target[:100]    # 只取前两类（0和1）
+
+# 划分训练集和测试集
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 特征标准化
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# 初始化并训练scikit-learn的逻辑斯蒂回归模型
+# penalty：正则化方式，'l2'（默认），'l1'，None，'elasticnet'
+# C：正则化强度
+# solver：求解器，'lbfgs'（拟牛顿，默认值），'liblinear'（坐标下降法），'newton-cg'（牛顿法变种），'sag'（随机梯度下降），'saga'（随机梯度+l1/弹性正则）
+log_reg_sklearn = LogisticRegression(penalty=None, C=1.0, solver='lbfgs', max_iter=1000)
+log_reg_sklearn.fit(X_train_scaled, y_train)
+
+# 预测并评估
+y_pred = log_reg_sklearn.predict(X_test_scaled)
+print(f"测试集准确率: {accuracy_score(y_test, y_pred):.2f}")
+y_train_pred = log_reg_sklearn.predict(X_train_scaled)
+print(f"训练集准确率: {accuracy_score(y_train, y_train_pred):.2f}")
+
+# 可视化决策边界（函数与之前逻辑类似，适配scikit-learn模型）
+def plot_decision_boundary(X, y, model):
+    x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+    y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+                         np.arange(y_min, y_max, 0.02))
+    Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+    
+    plt.contourf(xx, yy, Z, alpha=0.3)
+    plt.scatter(X[:, 0], X[:, 1], c=y, edgecolors='k')
+    plt.xlabel('Sepal Length')
+    plt.ylabel('Sepal Width')
+    plt.title('Logistic Regression Decision Boundary (scikit-learn)')
+    
+plot_decision_boundary(X_train_scaled, y_train, log_reg_sklearn)
+plt.show()
 ~~~
 
