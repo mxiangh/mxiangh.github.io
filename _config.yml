@@ -30,7 +30,7 @@ timezone: # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for
 author:
   type: person
   name: LemonSmile
-  url: https://mxiangh.github.io/
+  url: https://LemonSmile
   avatar: # path or url of avatar image (square)
   bio: I am an boring person.
   email: mxhzysy@163.com
