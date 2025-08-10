@@ -1,0 +1,9 @@
+---
+title: 机器学习补充（3）核函数（Kernel Function）
+tags:  ML Tips
+---
+
+简单介绍一下核函数
+
+<!--more-->
+

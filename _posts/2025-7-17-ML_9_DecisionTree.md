@@ -16,7 +16,7 @@ tags: ML Regression Classification
 （1）样本集合$D$对特征$A$的信息增益Info-Gain（ID3）
 
 
-$$g(D, A)=H(D)-H(D|A)$$
+$$g(D, A)=H(D)-H(D \mid A)$$
 
 $$H(D)=-\sum_{k=1}^{K} \frac{\left|C_{k}\right|}{|D|} \log _{2} \frac{\left|C_{k}\right|}{|D|}$$
 
