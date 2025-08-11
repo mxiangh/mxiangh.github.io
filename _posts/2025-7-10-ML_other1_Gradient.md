@@ -69,8 +69,8 @@ $$ b^1 = b^0 - \alpha \nabla J(b)$$
 $$ v = \gamma \cdot v_{prev} - \alpha \nabla L(w)$$
 
 - $ v_{prev} $: 上一步的惯性速度，初始设置为0。
-- $\gamma \cdot v_{prev}$: 保留之前的惯性（比如 $\gamma$=0.9，就保留 90% 的之前速度），$\gamma$也是超参数。
-- $-\alpha \nabla L(w)$: 沿着梯度方向走的距离。
+- $\gamma \cdot v_{prev}$: 保留之前的惯性（比如 $\gamma$=0.9，就保留 90% 的之前速度），$\gamma$也是超参数，被称为动量。
+- $-\alpha \nabla L(w)$: 沿着梯度方向走的距离，$\alpha$是学习率或称步长。
 
 第二步：更新当前位置
 
