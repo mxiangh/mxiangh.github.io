@@ -22,7 +22,7 @@ $$H(D)=-\sum_{k=1}^{K} \frac{\left|C_{k}\right|}{|D|} \log _{2} \frac{\left|C_{k
 
 $$H(D | A)=\sum_{i=1}^{n} \frac{\left|D_{i}\right|}{|D|} H\left(D_{i}\right)$$
 
-其中，$H(D)$是数据集$D$的熵，$H(D_i)$是数据集$D_i$的熵，$H(D|A)$是数据集$D$对特征$A$的条件熵。	$D_i$是$D$中特征$A$取第$i$个值的样本子集，$C_k$是$D$中属于第$k$类的样本子集。$n$是特征$A$取 值的个数，$K$是类的个数。
+其中，$H(D)$是数据集$D$的熵，$H(D_i)$是数据集$D_i$的熵，$H(D\mid A)$是数据集$D$对特征$A$的条件熵。	$D_i$是$D$中特征$A$取第$i$个值的样本子集，$C_k$是$D$中属于第$k$类的样本子集。$n$是特征$A$取 值的个数，$K$是类的个数。
 
 （2）样本集合$D$对特征$A$的信息增益比Gain-ration（C4.5）
 
@@ -50,11 +50,11 @@ $$\operatorname{Gini}(p)=\sum_{k=1}^{K}p_k(1-p_k)=1-\sum_{k=1}^{K}p_k^2$$
 
 对于给定的样本集合D，基尼指数为
 
-$$\operatorname{Gini}(D)=1-\sum_{k=1}^{K}\left(\frac{\left|C_{k}\right|}{|D|}\right)^{2}$$
+$$\operatorname{Gini}(D)=1-\sum_{k=1}^{K}(\frac{\lvert C_{k}\vert }{\vert D\vert })^{2}$$
 
 如果样本集合D根据特征A是否取某一可能值被分为$D_1$和$D_2$两部分，则特征$A$条件下集合$D$的基尼指数为
 
- $$\operatorname{Gini}(D, A)=\frac{\left|D_{1}\right|}{|D|} \operatorname{Gini}\left(D_{1}\right)+\frac{\left|D_{2}\right|}{|D|} \operatorname{Gini}\left(D_{2}\right)$$
+ $$\operatorname{Gini}(D, A)=\frac{\vert D_{1}\vert }{\vert D\vert } \operatorname{Gini}\left(D_{1}\right)+\frac{\vert D_{2}\vert }{\vert D\vert } \operatorname{Gini}\left(D_{2}\right)$$
 
 ##### 2.树的生成
 
