@@ -7,8 +7,5 @@ tags: ML Clustering
 
 <!--more-->
 
-最早出处：The Estimation of the Gradient of a Density Function, with Applications in Pattern Recognition
 
-严格证明论文：Mean Shift: A Robust Approach Toward Feature Space Analysis
 
-略

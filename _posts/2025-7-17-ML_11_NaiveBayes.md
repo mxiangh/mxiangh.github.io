@@ -115,7 +115,9 @@ $$P(\mathbf{X} = \mathbf{x} \mid Y = C_k) = \prod_{i=1}^n P(X_i = x_i \mid Y = C
 
 （4）边缘概率
 
-根据全概率公式求解边缘概率：$ P(\mathbf{X} = \mathbf{x}) = \sum_{k=1}^K P(\mathbf{X} = \mathbf{x} \vert Y = C_k) \cdot P(Y = C_k) = \sum_{j=1}^K \lbrack \prod_{i=1}^n P(X_i = x_i \mid Y = C_j) \cdot P(Y = C_j) \rbrack $
+根据全概率公式求解边缘概率：
+
+$$ P(\mathbf{X} = \mathbf{x}) = \sum_{k=1}^K P(\mathbf{X} = \mathbf{x} \vert Y = C_k) \cdot P(Y = C_k) = \sum_{j=1}^K \lbrack \prod_{i=1}^n P(X_i = x_i \mid Y = C_j) \cdot P(Y = C_j) \rbrack $$
 
 （5）计算 “新样本属于某类别”的条件概率
 

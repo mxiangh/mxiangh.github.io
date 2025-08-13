@@ -80,7 +80,7 @@ from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.preprocessing import LabelEncoder
 import matplotlib.pyplot as plt
 
-plt.rcParams["font.family"] = ["SimHei", "WenQuanYi Micro Hei", "Heiti TC"]  # 支持中文的字体
+plt.rcParams["font.family"] = ["SimHei"]  # 支持中文的字体
 plt.rcParams["axes.unicode_minus"] = False  # 解决负号显示问题
 
 # 西瓜数据集2.0（周志华西瓜书表4.1）
