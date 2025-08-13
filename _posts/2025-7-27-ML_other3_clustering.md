@@ -15,7 +15,7 @@ tags: ML Tips Clustering
 
 对数据集$ D= \lbrace \mathbf{x_1} , \mathbf{x_2} , \cdots , \mathbf{x_m} \rbrace $，假定通过聚类给出的簇划分为$ C = \lbrace C_1, C_2, \cdots ,C_k  \rbrace $，参考模型给出的簇划分为$ C^{*} = \lbrace C_1^{*} , C_2^{*} , \cdots , C_k^{*} \rbrace $。
 
-相应地，令$ \lambda $ 和$ \lambda^{*} $分别表示与$ C $和$ C^{*} $对应的簇标记向量，将样本两辆配对考虑，定义
+相应地，令$ \lambda和 \lambda^{*} 分别表示与 C 和 C^{*} $对应的簇标记向量，将样本两辆配对考虑，定义
 
 $$\begin{array}{ll}
 a=|S S|, & \left.S S=\left\{\left(\mathbf{x}_{i}, \mathbf{x}_{j}\right) \mid \lambda_{i}=\lambda_{j}, \lambda_{i}^{*}=\lambda_{j}^{*}, i<j\right)\right\} \\
