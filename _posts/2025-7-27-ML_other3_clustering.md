@@ -16,21 +16,21 @@ tags: ML Tips Clustering
 对数据集$D= \lbrace \mathbf{x_1} , \mathbf{x_2} , \cdots , \mathbf{x_m} \rbrace$，假定通过聚类给出的簇划分为$C = \lbrace C_1, C_2, \cdots ,C_k  \rbrace $，参考模型给出的簇划分为$\hat{C} = \lbrace \hat{C}_1, \hat{C}_2, \cdots ,\hat{C}_k  \rbrace $。相应地，令$\lambda $和$\hat{\lambda}$分别表示与$C$和$\hat{C}$对应的簇标记向量，将样本两辆配对考虑，定义
 
 $$\begin{array}{ll}
-a=|S S|, & \left.S S=\left\{\left(\mathbf{x}_{i}, \mathbf{x}_{j}\right) \mid \lambda_{i}=\lambda_{j}, \lambda_{i}^{*}=\lambda_{j}^{*}, i<j\right)\right\} \\
-b=|S D|, & \left.S D=\left\{\left(\mathbf{x}_{i}, \mathbf{x}_{j}\right) \mid \lambda_{i}=\lambda_{j}, \lambda_{i}^{*} \neq \lambda_{j}^{*}, i<j\right)\right\} \\
-c=|D S|, & \left.D S=\left\{\left(\mathbf{x}_{i}, \mathbf{x}_{j}\right) \mid \lambda_{i} \neq \lambda_{j}, \lambda_{i}^{*}=\lambda_{j}^{*}, i<j\right)\right\} \\
-d=|D D|, & \left.D D=\left\{\left(\mathbf{x}_{i}, \mathbf{x}_{j}\right) \mid \lambda_{i} \neq \lambda_{j}, \lambda_{i}^{*} \neq \lambda_{j}^{*}, i<j\right)\right\}
+a=|S S|, & \left.S S=\left\{\left(\mathbf{x}_{i}, \mathbf{x}_{j}\right) \mid \lambda_{i}=\lambda_{j}, \hat{\lambda}_{i}=\hat{\lambda}_{j}, i<j\right)\right\} \\
+b=|S D|, & \left.S D=\left\{\left(\mathbf{x}_{i}, \mathbf{x}_{j}\right) \mid \lambda_{i}=\lambda_{j}, \hat{\lambda}_{i} \neq \hat{\lambda}_{j}, i<j\right)\right\} \\
+c=|D S|, & \left.D S=\left\{\left(\mathbf{x}_{i}, \mathbf{x}_{j}\right) \mid \lambda_{i} \neq \lambda_{j}, \hat{\lambda}_{i}=\hat{\lambda}_{j}, i<j\right)\right\} \\
+d=|D D|, & \left.D D=\left\{\left(\mathbf{x}_{i}, \mathbf{x}_{j}\right) \mid \lambda_{i} \neq \lambda_{j}, \hat{\lambda}_{i} \neq \hat{\lambda}_{j}, i<j\right)\right\}
 \end{array}$$
 
 其中：
 
-集合$SS$包含了在$C$中隶属于相同簇且在$C^{*}$中也隶属于相同簇的样本对；
+集合$SS$包含了在$C$中隶属于相同簇且在$\hat{C}$中也隶属于相同簇的样本对；
 
-集合$SD$包含了在$C$中隶属于相同簇但在$C^{*}$中隶属于不相同簇的样本对；
+集合$SD$包含了在$C$中隶属于相同簇但在$\hat{C}$中隶属于不相同簇的样本对；
 
-集合$DS$包含了在$C$中隶属于不相同簇但在$C^{*}$中隶属于相同簇的样本对；
+集合$DS$包含了在$C$中隶属于不相同簇但在$\hat{C}$中隶属于相同簇的样本对；
 
-集合$DD$包含了在$C$中隶属于不相同簇且在$C^{*}$中也隶属于不相同簇的样本对。
+集合$DD$包含了在$C$中隶属于不相同簇且在$\hat{C}$中也隶属于不相同簇的样本对。
 
 由于每个样本对$( \mathbf{x}_i, \mathbf{x}_j ) (i<j) $仅能出现在一个集合中，因此$ a+b+c+d = \frac{m(m-1)}{2} $。
 
