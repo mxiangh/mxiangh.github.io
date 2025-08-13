@@ -13,7 +13,7 @@ tags: ML Tips Clustering
 
 1.外部指标：将聚类结果与某个“参考模型”进行比较。
 
-对数据集$D=\lbrace \mathbf{x_1}, \mathbf{x_2},\cdots,\mathbf{x_m} \rbrace$，假定通过聚类给出的簇划分为$C=\lbrace C_1, C_2,\cdots,C_k \rbrace$，参考模型给出的簇划分为$C^{'}=\lbrace C_1^{'}, C_2^{'},\cdots,C_k^{'} \rbrace$。相应地，令$\lambda$和$\lambda^{'}$分别表示与$C$和$C^{'}$对应的簇标记向量，将样本两辆配对考虑，定义
+对数据集$D=\lbrace \mathbf{x_1}, \mathbf{x_2},\cdots,\mathbf{x_m} \rbrace$，假定通过聚类给出的簇划分为$C=\lbrace C_1, C_2,\cdots,C_k \rbrace$，参考模型给出的簇划分为$C^{*}=\lbrace C_1^{*}, C_2^{*},\cdots,C_k^{*} \rbrace$。相应地，令$\lambda$和$\lambda^{*}$分别表示与$C$和$C^{*}$对应的簇标记向量，将样本两辆配对考虑，定义
 
 $$\begin{array}{ll}
 a=|S S|, & \left.S S=\left\{\left(\mathbf{x}_{i}, \mathbf{x}_{j}\right) \mid \lambda_{i}=\lambda_{j}, \lambda_{i}^{*}=\lambda_{j}^{*}, i<j\right)\right\} \\
@@ -32,7 +32,7 @@ d=|D D|, & \left.D D=\left\{\left(\mathbf{x}_{i}, \mathbf{x}_{j}\right) \mid \la
 
 集合$DD$包含了在$C$中隶属于不相同簇且在$C^{*}$中也隶属于不相同簇的样本对。
 
-由于每个样本对$(\mathbf{x}_i, \mathbf{x}_j)(i<j)$仅能出现在一个集合中，因此$a+b+c+d=\frac{m(m-1)}{2}$。
+由于每个样本对$( \mathbf{x}_i, \mathbf{x}_j ) (i<j) $仅能出现在一个集合中，因此$ a+b+c+d = \frac{m(m-1)}{2} $。
 
 - Jaccard系数（Jaccard Coefficient，简称JC）
 
