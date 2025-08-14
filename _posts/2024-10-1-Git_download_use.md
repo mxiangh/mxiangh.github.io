@@ -18,7 +18,11 @@ tags: Tools
 
 前往Git的官方链接[Git官网](https://git-scm.com/)，在首页点击Dowmload for Windows。
 
+![](/assets/images/gitdown/one.png)
+
 选择对应版本下载即可，笔者选的是Git for Windows/x64 Setup.，版本为2.50.1。
+
+![](/assets/images/gitdown/two.png)
 
 下载后，进行软件安装，一直点击Next，选择默认选项即可。
 

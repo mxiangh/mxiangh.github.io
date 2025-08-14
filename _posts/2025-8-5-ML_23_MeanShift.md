@@ -50,7 +50,7 @@ $$S_h(x) = \left\{ y \mid (y - x)(y - x)^T \leqslant h^2 \right\}$$
 
 2.2 调整中心位置
 
-$$x_{t+1}=M_t-x_t$$
+$$x_{t+1}=M_t+x_t$$
 
 当前中心点$x_t$沿着均值偏移量$M_t$方向移动，得到新的中心$x_{t+1}$，该迭代过程不断调整中心点位置，直到质心不变或收敛。
 
@@ -66,7 +66,7 @@ $$x_{t+1}=M_t-x_t$$
 
 $$M(x) = \frac{\sum_{s \in S} K(s - x)w(s)s}{\sum_{s \in S} K(s - x)w(s)}$$
 
-其中$K$是高斯核，$S$是数据集，$x$是被偏移点，$w(s)$是数据点s的权重，之后通过$m(x) - x$进行均值偏移。
+其中$K$是高斯核，$S$是数据集，$x$是被偏移点，$w(s)$是数据点s的权重，之后调整中心位置。
 
 ~~~
 ~~~
@@ -74,6 +74,7 @@ $$M(x) = \frac{\sum_{s \in S} K(s - x)w(s)s}{\sum_{s \in S} K(s - x)w(s)}$$
 
 
 ~~~
+# sklearn实现
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import MeanShift, estimate_bandwidth
