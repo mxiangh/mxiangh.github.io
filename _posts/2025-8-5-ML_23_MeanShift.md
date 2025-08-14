@@ -32,9 +32,10 @@ Mean Shift目的是找到从所有数据点开始形成的密度最大的区域�
 
 2.1 均值漂移
 
-$$M(x)=\frac{\sum_{s \in S} K(s - x)s}{\sum_{s \in S} K(s - x)} \tag{2}$$
+$$M(x)=\frac{\sum_{s \in S} K(s - x)s}{\sum_{s \in S} K(s - x)}$$
 
-$$K(x)=\begin{cases} 1, & \text{若} \Vert x \Vert \leq \lambda \\ 0, & \text{若} \Vert x \Vert > \lambda \end{cases} \tag{1}$$
+$$K(x)=\begin{cases} 1, & \text{若} \Vert x \Vert \leq \lambda \\ 0, & \text{若} \Vert x \Vert > \lambda \end{cases}$$
+
 x为初始选择的样本，s为其他样本，$\lambda$是是一个阈值，在这里可以理解为半径。$K(s - x)$用来找以x为圆心，$\lambda$为半径的样本，由于值取0和1，分子可以看做在圆内的样本向量求和，分母为圆内样本总数量，对公式化简如下
 
 $$ M_t(x)=\frac{1}{k}\sum_{x_i \in S_h} (x_i-x_t) $$
