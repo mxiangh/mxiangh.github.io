@@ -92,7 +92,6 @@ $$ d_{cen}(C_i,C_j)=\vert \vert \mu_{C_i} - \mu_{C_j} \vert \vert $$
 
 
 ~~~
-# scipy库实现（绘制树状图）
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -102,27 +101,19 @@ from sklearn.preprocessing import StandardScaler
 plt.rcParams["font.family"] = ["SimHei"]  # 支持中文的字体
 plt.rcParams["axes.unicode_minus"] = False  # 解决负号显示问题
 
-# 西瓜数据集4.0
-data = {
-    '编号': list(range(1, 31)),
-    '密度': [0.697, 0.774, 0.634, 0.608, 0.556, 0.403, 0.481, 0.437, 0.666, 
-             0.243, 0.245, 0.343, 0.639, 0.657, 0.360, 0.593, 0.719, 0.359, 
-             0.339, 0.282, 0.748, 0.714, 0.483, 0.478, 0.525, 0.751, 0.532, 
-             0.473, 0.725, 0.446],
-    '含糖率': [0.460, 0.376, 0.264, 0.318, 0.215, 0.237, 0.149, 0.211, 0.091, 
-              0.267, 0.057, 0.099, 0.161, 0.198, 0.370, 0.042, 0.103, 0.188, 
-              0.241, 0.257, 0.232, 0.346, 0.312, 0.437, 0.369, 0.489, 0.472, 
-              0.376, 0.445, 0.459],
-    '好瓜': ['是', '是', '是', '是', '是', '是', '是', '是', '否', 
-           '否', '否', '否', '否', '否', '否', '否', '否', '否', 
-           '否', '否', '否', '是', '是', '是', '是', '是', '是', '是', '是', '是']
-}
+# 提供的西瓜数据集4.0
+data = np.array([
+    [1, 0.697, 0.460, 1],[2, 0.774, 0.376, 1],[3, 0.634, 0.264, 1],[4, 0.608, 0.318, 1],[5, 0.556, 0.215, 1],
+    [6, 0.403, 0.237, 0],[7, 0.481, 0.149, 0],[8, 0.437, 0.211, 0],[9, 0.666, 0.091, 0],[10, 0.243, 0.267, 0],
+    [11, 0.245, 0.057, 0],[12, 0.343, 0.099, 0],[13, 0.639, 0.161, 1],[14, 0.657, 0.198, 1],[15, 0.360, 0.370, 0],
+    [16, 0.593, 0.042, 0],[17, 0.719, 0.103, 1],[18, 0.359, 0.188, 0],[19, 0.339, 0.241, 0],[20, 0.282, 0.257, 0],
+    [21, 0.748, 0.232, 1],[22, 0.714, 0.346, 1],[23, 0.483, 0.312, 0],[24, 0.478, 0.437, 0],[25, 0.525, 0.369, 1],
+    [26, 0.751, 0.489, 1],[27, 0.532, 0.472, 1],[28, 0.473, 0.376, 0],[29, 0.725, 0.445, 1],[30, 0.446, 0.459, 0]
+])
 
-# 创建DataFrame
-df = pd.DataFrame(data)
+# 提取密度和含糖率作为特征
+X = data[:, 1:3]
 
-# 提取特征并标准化
-X = df[['密度', '含糖率']].values
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
@@ -130,7 +121,8 @@ methods=['single', 'complete', 'average', 'ward']
 method_names=['单链距离', '全链距离', '平均链距离', '沃德距离']
 Z = linkage(X_scaled, method=methods[3])
 
-dendrogram(Z, labels=df['编号'].values)
+# 使用整数编号作为标签（保持整数格式）
+dendrogram(Z, labels=data[:, 0].astype(int))  # 明确指定为整数类型
 plt.title(f'层次聚类树状图 - {method_names[3]}')
 plt.xlabel('西瓜编号')
 plt.ylabel('距离')
@@ -145,8 +137,8 @@ plt.title(f'西瓜数据集4.0层次聚类结果 - {method_names[3]}')
 plt.xlabel('密度')
 plt.ylabel('含糖率')
 
-# 添加数据点编号
-for j, txt in enumerate(df['编号']):
+# 添加数据点编号（整数格式）
+for j, txt in enumerate(data[:, 0].astype(int)):
     plt.annotate(txt, (X[j, 0], X[j, 1]), fontsize=12)
 
 # 添加颜色条
@@ -157,12 +149,14 @@ plt.show()
 
 # 比较聚类结果与实际标签
 print("\n聚类结果与实际标签比较：")
-comparison_df = df[['编号', '好瓜']].copy()
+comparison_df = pd.DataFrame({
+    '编号': data[:, 0].astype(int),  # 保持编号为整数
+    '好瓜': data[:, 3].astype(int),
+    '聚类结果': fcluster(linkage(X_scaled, method=methods[3]), t=2, criterion='maxclust')
+})
 
-Z_best = linkage(X_scaled, method = methods[3])
-# 和前面聚类一样这里只是将簇改成2
-comparison_df['聚类结果'] = fcluster(Z_best, t=2, criterion='maxclust')  
-print(comparison_df)
-
+# 输出时不显示默认索引列
+print(comparison_df.to_string(index=False))
+    
 ~~~
 
