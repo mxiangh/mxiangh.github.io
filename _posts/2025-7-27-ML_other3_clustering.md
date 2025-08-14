@@ -81,5 +81,5 @@ $$ DI=\underset{1 \leq i \leq k}{min} \lbrace \underset{j \ne i}{min} (\frac{d_{
 
 DBI越小越好，DI越大越好。
 
-有序属性选择闵可夫斯基距离，无需属性用VDM距离，两者结合可以处理混合属性。
+3.有序属性选择闵可夫斯基距离，无需属性用VDM距离，两者结合可以处理混合属性。
 
