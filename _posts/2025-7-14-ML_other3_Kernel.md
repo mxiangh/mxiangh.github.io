@@ -1,5 +1,5 @@
 ---
-title: 机器学习补充（3）核函数（Kernel Function）
+title: 机器学习补充（x）核函数（Kernel Function）
 tags:  ML Tips
 ---
 
@@ -7,3 +7,4 @@ tags:  ML Tips
 
 <!--more-->
 
+该用户已注销。
