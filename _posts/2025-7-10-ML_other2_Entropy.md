@@ -51,9 +51,7 @@ $$H(P, Q)=-\sum_{y} P(y) \log Q(y)$$
 
 二分类需要了解Sigmoid函数
 
-![](/images/Algorithm/sigmoid.png)
-
-$$ y = \frac{1}{1+e^{-x}} $$
+$$ Sigmoid(x) = \frac{1}{1+e^{-x}} $$
 
 这个函数将x控制在$\lbrack 0, 1 \rbrack$之间，转为一个接近0或1的y值。
 
@@ -93,4 +91,12 @@ $$ L(\hat{y},y)= - \frac{1}{m} \sum_{i=1}^m \lbrack y log \hat{y} + (1-y) log (1
 
 #### 5.多分类交叉熵
 
-略
+多分类需要了解Softmax函数，对于K类分类问题，函数定义如下：
+
+$$ Softmax(x) = \frac{e^{x_i}}{\sum_{j=1}^{K} e^{x_j}}$$
+
+这个函数对每个类别输出的概率进行归一化处理，使得所有类别概率总和为1。在进行类别判定时，通常输出概率最大的那个。
+
+多分类交叉熵损失函数如下：
+
+$$Loss = -\log\left( \frac{e^{z_k}}{\sum_{j=1}^{C} e^{z_j}} \right) $$
