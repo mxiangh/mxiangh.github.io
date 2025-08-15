@@ -1,4 +1,7 @@
 header:
+  - title: 首页
+    url: /index.html
+
   - title: 归档
     url: /archive.html
 
