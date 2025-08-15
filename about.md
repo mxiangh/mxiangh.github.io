@@ -5,10 +5,10 @@ key: page-about
 ---
 
 ## 微信打赏
-![wx](\assets\images\money\wx.jpg)
+![wx](\images\money\wx.jpg)
 
 ## 支付宝打赏
-![wx](\assets\images\money\zfb.jpg)
+![wx](\images\money\zfb.jpg)
 
 制作不易，感谢打赏！！！
 
