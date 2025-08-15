@@ -31,7 +31,7 @@ $$ \operatorname{sign}(x)=\left\{\begin{array}{ll}+1, & x \geq 0, \\ -1, & x<0 .
 
 说简单点就是，用一个超平面将两类点分开，因为只有-1和+1，对应了不同的两个类别。
 
-![](/assets/images/Perceptron-Linear-Algorithm/one.png)
+![](/images/Perceptron-Linear-Algorithm/one.png)
 
 如果在二维空间上，两类不同的点能被一条直线完全分开，则称为线性可分，使用感知机的前提是数据一定线性可分。
 
@@ -86,7 +86,7 @@ $$ L(w,b) = -\sum_{x_i \in M}y_i(w·x_i+b)$$
 
 用图绘制异或函数的四个点，很明显一条直线分不开
 
-![](/assets/images/Perceptron-Linear-Algorithm/two.png)
+![](/images/Perceptron-Linear-Algorithm/two.png)
 
 为了严谨给出严格的数学证明。考虑如下的感知机模型：
 

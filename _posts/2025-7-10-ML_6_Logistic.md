@@ -40,7 +40,7 @@ $$ y=\left\{\begin{array}{1}
 
 但是，单位阶跃函数不连续，于是提出一个常用的替代函数，“Sigmoid函数”
 
-![](/assets/images/Algorithm/sigmoid.png)
+![](/images/Algorithm/sigmoid.png)
 
 $$ y = \frac{1}{1+e^{-z}} $$
 

@@ -51,7 +51,7 @@ $$H(P, Q)=-\sum_{y} P(y) \log Q(y)$$
 
 二分类需要了解Sigmoid函数
 
-![](/assets/images/Algorithm/sigmoid.png)
+![](/images/Algorithm/sigmoid.png)
 
 $$ y = \frac{1}{1+e^{-x}} $$
 

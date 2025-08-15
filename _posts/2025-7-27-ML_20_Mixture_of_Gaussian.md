@@ -153,7 +153,15 @@ $$ \sum_{j=1}^m \frac{ p(\mathbf{x}_j \mid \mathbf{\mu}_i, \mathbf{\Sigma}_i)}{\
 
 $$ \sum_{j=1}^m \gamma_{ji} + \lambda \alpha_i = 0 $$
 
-由于$ \gamma_{ji}$表示样本$\mathbf{x}_j$属于第 i 个高斯成分的概率，对所有样本求和有$\sum_{i=1}^k \gamma_{ji} = 1$，同时有约束$\sum_{i=1}^k \alpha_i = 1$，所以两边式子对所有样本求和
+由于$ \gamma_{ji}$表示第$j$个样本属于第$i$个高斯成分的概率，对所有样本求和有
+
+$$\sum_{i=1}^k \gamma_{ji} = 1$$
+
+同时有约束
+
+$$\sum_{i=1}^k \alpha_i = 1$$
+
+所以两边式子对所有样本求和
 
 $$ \begin{aligned}
 \sum_{j=1}^m \sum_{i=1}^k \gamma_{ji} + \lambda \sum_{i=1}^k \alpha_i & = 0 \\

@@ -32,9 +32,7 @@ typora-root-url: ./..
 
 袋外数据OOB（out-of-bag ）：每棵决策树的生成都需要自助采样，这时就有1/3的数据未被选中，这部分数据就称为袋外数据。
 
-
-
-![](/assets/images/randomforest/one.png)
+![](images/randomforest/one.png)
 
 ##### 3.特征筛选
 
