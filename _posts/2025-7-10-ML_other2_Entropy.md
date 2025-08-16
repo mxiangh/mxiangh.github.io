@@ -6,7 +6,7 @@ typora-root-url: ./..
 
 介绍一下，熵、KL散度、交叉熵。
 
-<!--mare-->
+<!--more-->
 
 #### 1.熵（Entropy）：衡量分布的不确定性
 
