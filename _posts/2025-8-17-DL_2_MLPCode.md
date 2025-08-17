@@ -414,7 +414,7 @@ num_epochs = 500
 
 ###### 2.7 代码总结，开始训练并测试
 
-~~~###
+~~~
 # 分类
 import torchvision
 import torchvision.transforms as transforms
