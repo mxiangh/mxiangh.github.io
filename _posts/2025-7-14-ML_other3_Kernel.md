@@ -7,4 +7,4 @@ tags:  ML Tips
 
 <!--more-->
 
-该用户已注销。
+略。

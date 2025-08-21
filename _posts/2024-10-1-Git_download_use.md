@@ -32,6 +32,8 @@ tags: Tools
 ### 四、Git的使用
 安装完Git后，鼠标右键桌面，找到open git bash here，打开git的命令窗口
 
+![](/images/gitdown/3.png)
+
 接着，使用Git进行全局配置
 
 首先配置名字
@@ -46,6 +48,7 @@ git config --global user.email "这里输入github注册时的邮箱"
 
 设置密钥，由于笔者电脑的系统用户文件名包含中文，直接配置会出现乱码，这里进行强制配置
 1.强制创建文件夹ssh
+
 ```
 mkdir -p "$HOME/.ssh"
 ```
@@ -94,7 +97,7 @@ git init
 ~~~
 初始化git
 
-3.创建一个任意文件，例如text.py
+3.创建一个任意文件，例如text.py，之后尝试上传文件到github，逐行运行
 ~~~
 git add text.py
 git commit -m "上传内容提示"
