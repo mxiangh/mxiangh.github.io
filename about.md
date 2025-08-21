@@ -4,8 +4,6 @@ title: 合作
 key: page-about
 ---
 
-     
-
 <!-- ## 微信打赏
 ![wx](\images\money\wx.jpg)
 
@@ -48,4 +46,4 @@ key: page-about
 
 - Mamba
 
-- CV
+- 仿真
