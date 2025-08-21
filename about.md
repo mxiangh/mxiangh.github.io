@@ -47,3 +47,7 @@ key: page-about
 - Mamba
 
 - 仿真
+
+<!--  Vision Transformer（ViT）-->
+
+<!-- BERT -->
