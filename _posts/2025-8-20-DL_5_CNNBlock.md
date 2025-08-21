@@ -253,11 +253,13 @@ nn.BatchNorm2d(16)
 
 ##### 6.残差网络ResNet
 
-论文：Deep Residual Learning for Image Recognition.
+论文1：Deep Residual Learning for Image Recognition.
 
-残差网络版本如下：ResNet18、ResNet34、ResNet50、ResNet101、ResNet152。数字表示网络的层数，与Inception一样，可以用来做模型对比。此外，由于这个模型涉及的知识比较复杂，下面进行详细介绍。
+论文2：Identity mappings in deep residual networks.
 
-随着CNN的发展和普及，人们发现增加神经网络的层数可以提高训练精度，但是如果只是单纯的增加网络的深度，可能会出现“梯度弥散”和“梯度爆炸”等问题。
+残差网络版本如下：ResNet18、ResNet34、ResNet50、ResNet101、ResNet152。数字表示网络的层数，与Inception一样，可以用来做模型对比。此外，由于这个模型涉及的知识比较复杂，影响比较广泛，下面进行详细介绍。
+
+随着CNN的发展和普及，人们发现增加神经网络的层数可以提高训练精度，但是如果只是单纯的增加网络的深度，可能会出现“梯度消失”和“梯度爆炸”等问题。
 
 - 梯度消失：靠近输入层的梯度几乎为零，参数无法更新。
 
@@ -272,6 +274,65 @@ nn.BatchNorm2d(16)
 
 - 恒等映射：对任意集合$A$，如果映射 $f : A→A $定义为 $f(a)=a$，即规定 $A $中每个元素$ a $与自身对应，则称$ f $为 $A $上的恒等映射(identical mapping)。
 
+用一个简单的例子举例：拿1000块钱去刮彩票，肯定期望中大奖，但是最后刮出1000块钱，和本金一样，这个时候不亏也不赚，也就是保底，而中间去刮彩票是有可能超过初始本金的。
 
+假设我们期望拟合的映射为$H(x)$（初始想要拟合的函数），但是我们去拟合了另一个映射$F(x):=H(x)-x$，这个映射被称为残差映射。这时，原来期望拟合的映射$H(x)$就变成了$F(x) + x$（$H(x)=F(x) + x$）。
+
+这里有个假设，如果恒等映射是最优的结果，那么只需要让$F(x)$趋近于0，这就是一个恒等映射$H(x)=x$，与上述彩票例子类似，保底不亏，中间的变化可能让模型变的更好。
+
+所以，残差网络本质上是用恒等映射的思想，通过拟合并优化残差$H(x)-x$，让模型的性能保底不变，经过中间的网络层，性能可能更好。下图就是第一篇论文中的残差块，其中$F(x)$是残差映射。
+
+![](/images/CNNBlock/8.png)
+
+ResNet沿⽤了VGG完整的3 × 3卷积层设计。残差块⾥⾸先有2个有相同输出通道数的3 × 3卷积层。每个卷积层后接⼀个批量规范化层和ReLU激活函数。然后我们通过跨层数据通路，跳过这2个卷积运算，将输⼊直接加在最后的ReLU激活函数前。
+
+这样的设计要求2个卷积层的输出与输⼊形状⼀样，从⽽使它们可以相加。如果想改变通道数，就需要引⼊⼀个额外的1 × 1卷积层来将输⼊变换成需要的形状后再做相加运算。
+
+![](/images/CNNBlock/9.png)
+
+~~~
+import torch
+from torch import nn
+from torch.nn import functional as F
+
+class Residual(nn.Module):
+    def __init__(self, input_channels, num_channels, use_1x1conv=False, strides=1):
+        super().__init__()
+        self.conv1 = nn.Conv2d(input_channels, num_channels, kernel_size=3, padding=1, stride=strides)
+        self.conv2 = nn.Conv2d(num_channels, num_channels, kernel_size=3, padding=1)
+        if use_1x1conv:
+            self.conv3 = nn.Conv2d(input_channels, num_channels, kernel_size=1, stride=strides)
+        else:
+            self.conv3 = None
+        self.bn1 = nn.BatchNorm2d(num_channels)
+        self.bn2 = nn.BatchNorm2d(num_channels)
+        
+    def forward(self, X):
+        Y = F.relu(self.bn1(self.conv1(X)))
+        Y = self.bn2(self.conv2(Y))
+        if self.conv3:
+            X = self.conv3(X)
+        Y += X
+        return F.relu(Y)
+~~~
+
+这里留下一个问题，同样是正则化手段，为什么残差网络使用批量规范化层而不是暂退法（Dropout）？
+
+对于RestNet的完整架构不再赘述，有需要则看文献。
 
 ###### 7.稠密连接网络DenseNet
+
+稠密连接⽹络（DenseNet）在某种程度上是ResNet的逻辑扩展。ResNet将$F(x)$分解为两部分：⼀个简单的线性项和⼀个复杂的非线性项。那么再向前拓展⼀步，如果我们想将f拓展成超过两部分的信息呢？由此便得到了DenseNet。
+
+![](/images/CNNBlock/10.png)
+
+左边是ResNet，右边是DenseNet，ResNet和DenseNet的关键区别在于，DenseNet输出是连接（⽤图中的[, ]表示）而不是如ResNet的简单相加。
+
+$$x \to  [x, f1(x), f2([x, f1(x)]), f3([x, f1(x), f2([x, f1(x)])]), . . .] $$
+
+![](/images/CNNBlock/11.png)
+
+稠密⽹络主要由2部分构成：稠密块（dense block）和过渡层（transition layer）。前者定义如何连接输入和
+输出，而后者则控制通道数量，使其不会太复杂。
+
+这里同样不过多赘述，只需要了解网络架构设计思路即可。注重培养逻辑，而不是一味地阅读。
