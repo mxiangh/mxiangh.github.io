@@ -1,7 +1,7 @@
 ---
 
 title: 深度学习（5）常用的CNN模型
-tag: DL CNN
+tags: DL CNN
 typora-root-url: ./..
 ---
 

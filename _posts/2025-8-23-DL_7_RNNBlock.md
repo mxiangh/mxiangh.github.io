@@ -1,7 +1,7 @@
 ---
 
 title: 深度学习（7）常用的RNN模型
-tag: DL RNN
+tags: DL RNN
 typora-root-url: ./..
 ---
 

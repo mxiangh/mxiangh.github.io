@@ -1,7 +1,7 @@
 ---
 
 title: 深度学习（2）如何训练一个神经网络模型
-tag: DL DNN
+tags: DL DNN
 typora-root-url: ./..
 ---
 
