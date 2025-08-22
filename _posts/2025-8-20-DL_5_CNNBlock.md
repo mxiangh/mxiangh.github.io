@@ -316,8 +316,6 @@ class Residual(nn.Module):
         return F.relu(Y)
 ~~~
 
-这里留下一个问题，同样是正则化手段，为什么残差网络使用批量规范化层而不是暂退法（Dropout）？
-
 对于RestNet的完整架构不再赘述，有需要则看文献。
 
 ###### 7.稠密连接网络DenseNet
