@@ -5,7 +5,7 @@ tags: DL RNN
 typora-root-url: ./..
 ---
 
-学习最常用的循环网络架构。
+循环神经网络的改进。
 
 <!--more-->
 
