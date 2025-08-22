@@ -318,6 +318,8 @@ class Residual(nn.Module):
 
 对于RestNet的完整架构不再赘述，有需要则看文献。
 
+![](/images/CNNBlock/12.png)
+
 ###### 7.稠密连接网络DenseNet
 
 稠密连接⽹络（DenseNet）在某种程度上是ResNet的逻辑扩展。ResNet将$F(x)$分解为两部分：⼀个简单的线性项和⼀个复杂的非线性项。那么再向前拓展⼀步，如果我们想将f拓展成超过两部分的信息呢？由此便得到了DenseNet。
