@@ -14,6 +14,12 @@ key: page-about
 
 如有合作，请联系邮箱：mxhzysy@163.com
 
+<!-- # 擅长技能
+
+1.爬虫；
+
+2.Vue； -->
+
 # 目前学习路线
 
 回归 ——> 分类 ——> 降维 ——> 聚类 ——> DNN ——> CNN ——> RNN ——> Transformer
@@ -32,9 +38,9 @@ key: page-about
 
 - CNN（已学习网络架构）：LeNet、AlexNet、VGG、Inception V1、ResNet、DenseNet
 
-- RNN（在学）：LSTM、GRU
+- RNN（已学习网络架构）：LSTM、GRU
 
-- Transformer（未学）
+- Transformer（在学）
 
 # 未来暂定
 
