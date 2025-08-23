@@ -1,5 +1,4 @@
 ---
-
 title: 深度学习（7）GRU和LSTM
 tags: DL RNN
 typora-root-url: ./..
