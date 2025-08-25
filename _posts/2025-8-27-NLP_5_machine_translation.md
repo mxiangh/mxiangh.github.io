@@ -438,3 +438,7 @@ $$ \mathbf{c} = q(\mathbf{h}_1, \dots , \mathbf{h}_T)$$
 
 当$q(\mathbf{h}_1, \dots , \mathbf{h}_T)=\mathbf{h}_T$时，上下文变量仅仅是输入序列在最后时间步的隐状态$\mathbf{h}_T$。
 
+
+
+
+

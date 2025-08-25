@@ -119,7 +119,7 @@ tanh激活函数的目的是为了压缩记忆元信息，将值输出在区间(
 
 论文：On the properties of neural machine translation: encoder-decoder approaches. 
 
-LSTM出现后，针对该网络架构的模型层出不穷，其中比较出名有门控循环单元（gated recurrent units，GRU）。这个模型相比于LSTM，更加简洁。
+LSTM出现后，针对该网络架构的模型层出不穷，其中比较出名的有门控循环单元（gated recurrent units，GRU）。这个模型相比于LSTM，更加简洁。
 
 ###### 3.1 重置门、更新门
 
