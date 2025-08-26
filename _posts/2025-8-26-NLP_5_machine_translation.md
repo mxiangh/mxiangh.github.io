@@ -1141,7 +1141,3 @@ for eng, fra in zip(engs, fras):
 
 ![](/images/NLP/16.png)
 
-##### 9.源序列逆序
-
-在Sequence to Sequence Learning with Neural Networks论文中提到，如果将源序列逆序输入，目标序列不变，可以对长句子有更好的结果，这里我们尝试一下，看看效果。
-
