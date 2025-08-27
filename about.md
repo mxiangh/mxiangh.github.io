@@ -20,7 +20,7 @@ key: page-about
 
 2.Vue； -->
 
-# 目前学习路线
+# 2025.07-2025.08 （已学）
 
 回归 ——> 分类 ——> 降维 ——> 聚类 ——> DNN ——> CNN ——> RNN ——> Transformer
 
@@ -40,19 +40,21 @@ key: page-about
 
 - RNN（已学习网络架构）：LSTM、GRU
 
-- Transformer（在学）
+- Transformer（已学）：Attention、self-Attention、Multi-Head Attention
 
-# 未来暂定
+# 目前在学
 
 - 优化算法：模拟退火、遗传算法等
 
-- 集成学习：XGBoost
+- CV
+
+<!-- - 集成学习：XGBoost
 
 - 降维：U-MAP
 
 - Mamba
 
-- 仿真
+- 仿真 -->
 
 <!--  Vision Transformer（ViT）-->
 
