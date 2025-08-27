@@ -1,5 +1,5 @@
 ---
-title: 自然语言处理（4)Attention Model
+title: 自然语言处理（6）Attention Model
 tags: DL RNN NLP
 typora-root-url: ./..
 ---

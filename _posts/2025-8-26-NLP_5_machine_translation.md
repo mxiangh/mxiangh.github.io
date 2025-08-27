@@ -1,5 +1,5 @@
 ---
-title: 自然语言处理（2）机器翻译案例：英—法
+title: 自然语言处理（5）机器翻译案例：英—法
 tags: DL RNN NLP
 typora-root-url: ./..
 ---
