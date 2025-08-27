@@ -119,6 +119,8 @@ $$ Attention(Q,K,V)=c = softmax(s(Q,K)) \cdot V $$
 
 也就是说，多头注意力机制和为了自注意力机制而设计的，这也是Transformer的核心内容。
 
+![](/images/NLP/20.png)
+
 ##### 5.加性注意力实现
 
 沿用机器翻译的例子，增加Neural Machine Translation by Jointly Learning to Align and Translate中的注意力机制。
