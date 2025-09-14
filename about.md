@@ -42,11 +42,17 @@ key: page-about
 
 - Transformer（已学）：Attention、self-Attention、Multi-Head Attention
 
+# 2025.09-至今 （已学）
+
+- 优化算法：模拟退火、遗传算法、粒子群算法。
+
+- 统计学方法：正态性检验、相关性分析、独立性检验
+
 # 目前在学
 
-- 优化算法：模拟退火、遗传算法等
+- RL
 
-- CV
+<!-- - CV -->
 
 <!-- - 集成学习：XGBoost
 
