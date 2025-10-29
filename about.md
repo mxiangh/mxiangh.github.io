@@ -48,9 +48,11 @@ key: page-about
 
 - 统计学方法：正态性检验、相关性分析、独立性检验
 
+- RL：DP、MC、TD、Sarsa、Q-learning、Dyna-Q
+
 # 目前在学
 
-- RL
+- DRL：DQN、Policy Gradient、Actor-Critic
 
 <!-- - CV -->
 
