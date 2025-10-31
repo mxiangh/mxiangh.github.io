@@ -54,6 +54,26 @@ key: page-about
 
 - DRL：DQN、Policy Gradient、Actor-Critic
 
+IEEE Transactions on Neural Network and Learning Systems (期刊)
+IEEE Transactions on Pattern Analysis and Machine Intelligence (期刊)
+IEEE Transactions on Knowledge and Data Engineering (期刊)
+Journal of Machine Learning Research  (期刊)
+Science China Information Science (期刊)
+International Conference on Machine Learning (ICML) (会议)
+Annual Conference on Neural Information Processing Systems (NeurIPS) (会议)
+International Conference on Learning Representations (ICLR) (会议)
+International Conference on Machine Learning (ICML) (会议)
+AAAI Conference on Artificial Intelligence (AAAI) (会议)
+International Joint Conference on Artificial Intelligence (IJCAI) (会议)
+
+IEEE开头的都可以在这里找：https://ieeexplore.ieee.org/Xplore/home.jsp
+
+JMLR的：https://jmlr.org/
+
+SCIS的：https://www.sciengine.com/scis/home
+
+顶会：https://openreview.net/
+
 <!-- - CV -->
 
 <!-- - 集成学习：XGBoost
